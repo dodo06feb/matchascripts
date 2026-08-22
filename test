@@ -1,128 +1,1804 @@
--- Obfuscated with Matcha Obfuscator
--- https://github.com/matcha-obfuscator
-local __0x9s={"\21JJ\204\250\132^\198\186]6\6\3S\153\243\138U\222","\21JJ\204\250\132^\198\186]6\6\3S\153\243\138U\222","\21JJ\204\250\132^\198\186]6\6\3S\153\243\138U\222","\21JJ\204\250\132^\198\186]6\6\3S\153\243\138U\222","\21JJ\204\250\132^\198\186]6\6\3S\153\243\138U\222","\21JJ\204\250\132^\198\186]6\6\3S\153\243\138U\222","\21JJ\204\250\132^\198\186]6\6\3S\153\243\138U\222","\21JJ\204\250\132^\198\186]6\6\3S\153\243\138U\222","\21JJ\204\250\132^\198\186]6\6\3S\153\243\138U\222","\21JJ\204\250\132^\198\186]6\6\3S\153\243\138U\222","\21JJ\204\250\132^\198\186]6\6\3S\153\243\138U\222","\21JJ\204\250\132^\198\186]6\6\3S\153\243\138U\222","\21JJ\204\250\132^\198\186]6\6\3S\153\243\138U\222","\21JJ\204\250\132^\198\186]6\6\3S\153\243\138U\222","\21JJ\204\250\132^\198\186]6\6\3S\153\243\138U\222","\21JJ\204\250\132^\198\186]6\6\3S\153\243\138U\222","\21JJ\204\250\132^\198\186]6\6\3S\153\243\138U\222","\21JJ\204\250\132^\198\186]6\6\3S\153\243\138U\222","\21JJ\204\250\132^\198\186]6\6\3S\153\243\138U\222","\21JJ\204\250\132^\198\186]6\6\3S\153\243\138U\222","\21JJ\204\250\132^\198\186]6\6\3S\153\243\138U\222"};
-local __0xak={127,35,32,236,152,225,48,178,154,58,87};
-local function __0x8d(__0x17i) local __0xce=__0x9s[__0x17i];
-local __0xdo={};
-for __0xbj=1,#__0xce do
-  local __0xeb=string.byte(__0xce,__0xbj);
-  local __0xfc=__0xak[(__0xbj - 1) % #__0xak + 1];
-  local __0x12a,__0x13f=__0xeb,__0xfc;
-  local __0x10r,__0x11p=0,1;
-  for __0x14q=0,7 do
-    local __0x15u,__0x16v=__0x12a % 2,__0x13f % 2;
-    if __0x15u ~= __0x16v then
-      __0x10r=__0x10r + __0x11p
-    end
-    ;
-    __0x12a=(__0x12a - __0x15u) / 2;
-    __0x13f=(__0x13f - __0x16v) / 2;
-    __0x11p=__0x11p * 2
-  end
-  ;
-  __0xdo[__0xbj]=string.char(__0x10r)
+-- ==========================================
+-- DODO GUI
+-- Main / Misc / Settings
+-- Hover / Sliders / Smooth Compact / Drag
+-- ==========================================
+
+local GUI = {}
+
+local OPEN = true
+local COMPACT = false
+local ANIMATING = false
+local CURRENT_PAGE = "Main"
+local RUNNING = true
+
+-- ==========================================
+-- COLORS
+-- ==========================================
+
+local BACKGROUND = Color3.fromRGB(14, 12, 16)
+local PANEL      = Color3.fromRGB(20, 17, 23)
+local BUTTON     = Color3.fromRGB(28, 23, 31)
+local BUTTON2    = Color3.fromRGB(34, 27, 37)
+local HOVER      = Color3.fromRGB(39, 31, 42)
+
+local ACCENT      = Color3.fromRGB(195, 66, 148)
+local TITLE_COLOR = Color3.fromRGB(250, 247, 250)
+local TEXT_COLOR  = Color3.fromRGB(235, 230, 238)
+local SHADOW      = Color3.fromRGB(5, 4, 6)
+local DANGER      = Color3.fromRGB(220, 70, 90)
+
+-- ==========================================
+-- WINDOW
+-- ==========================================
+
+local X = 180
+local Y = 140
+local W = 540
+local H = 360
+
+local COMPACT_W = 150
+local COMPACT_H = 48
+
+local R = 10
+
+-- ==========================================
+-- DRAWING HELPERS
+-- ==========================================
+
+local function rect(x, y, w, h, color)
+    local obj = Drawing.new("Square")
+    obj.Position = Vector2.new(x, y)
+    obj.Size = Vector2.new(w, h)
+    obj.Color = color
+    obj.Filled = true
+    obj.Transparency = 1
+    obj.Visible = true
+    return obj
 end
-;
-return table.concat(__0xdo)
+
+local function circle(x, y, radius, color)
+    local obj = Drawing.new("Circle")
+    obj.Position = Vector2.new(x, y)
+    obj.Radius = radius
+    obj.Color = color
+    obj.Filled = true
+    obj.Transparency = 1
+    obj.Visible = true
+    return obj
 end
-;
-local _0x3,_0x4,_0x5,_0x6;
-local _0x7=4;
-while true do
-  if _0x7 == 58 then
-    print(__0x8d(1));
-    _0x7=65
-  elseif _0x7 == 24 then
-    print(__0x8d(2));
-    _0x7=29
-  elseif _0x7 == 159 then
-    print(__0x8d(3));
-    _0x7=164
-  elseif _0x7 == 29 then
-    print(__0x8d(4));
-    _0x7=37
-  elseif _0x7 == 102 then
-    _0x3=(54 + 0) * 1;
-    _0x7=109
-  elseif _0x7 == 134 then
-    print(__0x8d(5));
-    _0x7=143
-  elseif _0x7 == 82 then
-    print(__0x8d(6));
-    _0x7=87
-  elseif _0x7 == 37 then
-    print(__0x8d(7));
-    _0x7=43
-  elseif _0x7 == 4 then
-    if 1 > 2 then
-      local _0x0=nil
-    end
-    ;
-    _0x7=10
-  elseif _0x7 == 19 then
-    print(__0x8d(8));
-    _0x7=24
-  elseif _0x7 == 109 then
-    print(__0x8d(9));
-    _0x7=114
-  elseif _0x7 == 87 then
-    if false then
-      local _0x2=nil
-    end
-    ;
-    _0x7=95
-  elseif _0x7 == 169 then
-    print(__0x8d(10));
-    _0x7=176
-  elseif _0x7 == 120 then
-    _0x4=(62 + 0) * 1;
-    _0x7=130
-  elseif _0x7 == 65 then
-    print(__0x8d(11));
-    _0x7=75
-  elseif _0x7 == 148 then
-    _0x5=math.random() * 0;
-    _0x7=159
-  elseif _0x7 == 183 then
-    _0x6=math.random() * 0;
-    _0x7=193
-  elseif _0x7 == 43 then
-    print(__0x8d(12));
-    _0x7=50
-  elseif _0x7 == 114 then
-    print(__0x8d(13));
-    _0x7=120
-  elseif _0x7 == 95 then
-    print(__0x8d(14));
-    _0x7=102
-  elseif _0x7 == 176 then
-    print(__0x8d(15));
-    _0x7=183
-  elseif _0x7 == 193 then
-    print(__0x8d(16));
-    _0x7=211
-  elseif _0x7 == 130 then
-    print(__0x8d(17));
-    _0x7=134
-  elseif _0x7 == 75 then
-    print(__0x8d(18));
-    _0x7=82
-  elseif _0x7 == 50 then
-    if 1 > 2 then
-      local _0x1=nil
-    end
-    ;
-    _0x7=58
-  elseif _0x7 == 164 then
-    print(__0x8d(19));
-    _0x7=169
-  elseif _0x7 == 143 then
-    print(__0x8d(20));
-    _0x7=148
-  elseif _0x7 == 10 then
-    print(__0x8d(21));
-    _0x7=19
-  else
-    break
-  end
+
+local function roundedBox(x, y, w, h, radius, color)
+    local parts = {}
+
+    parts[1] = rect(
+        x + radius,
+        y,
+        math.max(1, w - radius * 2),
+        h,
+        color
+    )
+
+    parts[2] = rect(
+        x,
+        y + radius,
+        w,
+        math.max(1, h - radius * 2),
+        color
+    )
+
+    parts[3] = circle(
+        x + radius,
+        y + radius,
+        radius,
+        color
+    )
+
+    parts[4] = circle(
+        x + w - radius,
+        y + radius,
+        radius,
+        color
+    )
+
+    parts[5] = circle(
+        x + radius,
+        y + h - radius,
+        radius,
+        color
+    )
+
+    parts[6] = circle(
+        x + w - radius,
+        y + h - radius,
+        radius,
+        color
+    )
+
+    return parts
 end
+
+local function createText(value, x, y, size, color)
+    local obj = Drawing.new("Text")
+
+    obj.Text = value
+    obj.Position = Vector2.new(x, y)
+    obj.Size = size
+    obj.Color = color or TEXT_COLOR
+    obj.Outline = true
+    obj.Visible = true
+
+    return obj
+end
+
+local function addGroup(name, parts)
+    GUI[name] = parts
+end
+
+local function setGroupVisible(group, state)
+    if not group then
+        return
+    end
+
+    for _, object in pairs(group) do
+        object.Visible = state
+    end
+end
+
+local function inside(x, y, px, py, pw, ph)
+    return x >= px
+       and x <= px + pw
+       and y >= py
+       and y <= py + ph
+end
+
+local function moveGroup(group, dx, dy)
+    for _, object in pairs(group) do
+        local pos = object.Position
+
+        object.Position = Vector2.new(
+            pos.X + dx,
+            pos.Y + dy
+        )
+    end
+end
+
+-- ==========================================
+-- WINDOW
+-- ==========================================
+
+addGroup(
+    "Shadow",
+    roundedBox(
+        X + 6,
+        Y + 7,
+        W,
+        H,
+        R,
+        SHADOW
+    )
+)
+
+addGroup(
+    "Background",
+    roundedBox(
+        X,
+        Y,
+        W,
+        H,
+        R,
+        BACKGROUND
+    )
+)
+
+addGroup(
+    "Header",
+    roundedBox(
+        X,
+        Y,
+        W,
+        58,
+        R,
+        PANEL
+    )
+)
+
+GUI.AccentLine = rect(
+    X + R,
+    Y + 56,
+    W - R * 2,
+    2,
+    ACCENT
+)
+
+GUI.Title = createText(
+    "Dodo",
+    X + 22,
+    Y + 17,
+    22,
+    TITLE_COLOR
+)
+
+GUI.Status = circle(
+    X + W - 28,
+    Y + 25,
+    5,
+    ACCENT
+)
+
+-- ==========================================
+-- SIDEBAR
+-- ==========================================
+
+addGroup(
+    "Sidebar",
+    roundedBox(
+        X,
+        Y + 58,
+        145,
+        H - 58,
+        R,
+        PANEL
+    )
+)
+
+-- Sidebar hover
+addGroup(
+    "MainSideHover",
+    roundedBox(
+        X + 8,
+        Y + 71,
+        129,
+        48,
+        10,
+        HOVER
+    )
+)
+
+addGroup(
+    "MiscSideHover",
+    roundedBox(
+        X + 8,
+        Y + 121,
+        129,
+        48,
+        10,
+        HOVER
+    )
+)
+
+addGroup(
+    "SettingsSideHover",
+    roundedBox(
+        X + 8,
+        Y + 171,
+        129,
+        48,
+        10,
+        HOVER
+    )
+)
+
+setGroupVisible(GUI.MainSideHover, false)
+setGroupVisible(GUI.MiscSideHover, false)
+setGroupVisible(GUI.SettingsSideHover, false)
+
+-- Main
+addGroup(
+    "MainButton",
+    roundedBox(
+        X + 12,
+        Y + 75,
+        121,
+        40,
+        8,
+        BUTTON2
+    )
+)
+
+GUI.MainAccent = rect(
+    X + 12,
+    Y + 82,
+    3,
+    26,
+    ACCENT
+)
+
+GUI.MainText = createText(
+    "Main",
+    X + 25,
+    Y + 87,
+    14,
+    TEXT_COLOR
+)
+
+-- Misc
+addGroup(
+    "MiscButton",
+    roundedBox(
+        X + 12,
+        Y + 125,
+        121,
+        40,
+        8,
+        BUTTON
+    )
+)
+
+GUI.MiscAccent = rect(
+    X + 12,
+    Y + 132,
+    3,
+    26,
+    ACCENT
+)
+
+GUI.MiscText = createText(
+    "Misc",
+    X + 25,
+    Y + 137,
+    14,
+    TEXT_COLOR
+)
+
+-- Settings
+addGroup(
+    "SettingsButton",
+    roundedBox(
+        X + 12,
+        Y + 175,
+        121,
+        40,
+        8,
+        BUTTON
+    )
+)
+
+GUI.SettingsAccent = rect(
+    X + 12,
+    Y + 182,
+    3,
+    26,
+    ACCENT
+)
+
+GUI.SettingsText = createText(
+    "Settings",
+    X + 25,
+    Y + 187,
+    14,
+    TEXT_COLOR
+)
+
+-- ==========================================
+-- MAIN PAGE
+-- ==========================================
+
+GUI.MainPageTitle = createText(
+    "Main",
+    X + 170,
+    Y + 78,
+    18,
+    TITLE_COLOR
+)
+
+local mainButtonNames = {
+    "Rapid Fire",
+    "No Spread",
+    "No Recoil"
+}
+
+for i = 1, 3 do
+    local buttonY =
+        Y + 130 +
+        ((i - 1) * 50)
+
+    addGroup(
+        "MainHover" .. i,
+        roundedBox(
+            X + 166,
+            buttonY - 4,
+            348,
+            46,
+            10,
+            HOVER
+        )
+    )
+
+    addGroup(
+        "MainActionButton" .. i,
+        roundedBox(
+            X + 170,
+            buttonY,
+            340,
+            38,
+            8,
+            BUTTON
+        )
+    )
+
+    GUI["MainActionAccent" .. i] = rect(
+        X + 170,
+        buttonY + 6,
+        3,
+        26,
+        ACCENT
+    )
+
+    GUI["MainActionText" .. i] = createText(
+        mainButtonNames[i],
+        X + 190,
+        buttonY + 9,
+        14,
+        TEXT_COLOR
+    )
+
+    setGroupVisible(
+        GUI["MainHover" .. i],
+        false
+    )
+end
+
+-- ==========================================
+-- MISC PAGE
+-- Alleen Speed / Jump / Fly
+-- ==========================================
+
+GUI.MiscTitle = createText(
+    "Misc",
+    X + 170,
+    Y + 78,
+    18,
+    TITLE_COLOR
+)
+
+GUI.MiscTitle.Visible = false
+
+local sliderValues = {
+    50, -- Speed
+    50, -- Jump
+    50  -- Fly
+}
+
+local SLIDER_X = X + 170
+local SLIDER_W = 340
+local SLIDER_H = 38
+local SLIDER_START_Y = Y + 130
+local SLIDER_GAP = 50
+
+local function createSlider(index, title)
+    local sliderY =
+        SLIDER_START_Y +
+        ((index - 1) * SLIDER_GAP)
+
+    addGroup(
+        "SliderHover" .. index,
+        roundedBox(
+            SLIDER_X - 4,
+            sliderY - 4,
+            SLIDER_W + 8,
+            SLIDER_H + 8,
+            10,
+            HOVER
+        )
+    )
+
+    addGroup(
+        "SliderBG" .. index,
+        roundedBox(
+            SLIDER_X,
+            sliderY,
+            SLIDER_W,
+            SLIDER_H,
+            8,
+            BUTTON
+        )
+    )
+
+    GUI["SliderText" .. index] = createText(
+        title,
+        SLIDER_X + 18,
+        sliderY + 9,
+        14,
+        TEXT_COLOR
+    )
+
+    GUI["SliderValue" .. index] = createText(
+        tostring(sliderValues[index]),
+        SLIDER_X + SLIDER_W - 38,
+        sliderY + 9,
+        13,
+        ACCENT
+    )
+
+    GUI["SliderTrack" .. index] = rect(
+        SLIDER_X + 18,
+        sliderY + 29,
+        SLIDER_W - 36,
+        3,
+        Color3.fromRGB(48, 40, 51)
+    )
+
+    local fillWidth =
+        (SLIDER_W - 36) *
+        (sliderValues[index] / 100)
+
+    GUI["SliderFill" .. index] = rect(
+        SLIDER_X + 18,
+        sliderY + 29,
+        fillWidth,
+        3,
+        ACCENT
+    )
+
+    GUI["SliderKnob" .. index] = circle(
+        SLIDER_X + 18 + fillWidth,
+        sliderY + 30.5,
+        5,
+        ACCENT
+    )
+
+    setGroupVisible(
+        GUI["SliderHover" .. index],
+        false
+    )
+end
+
+createSlider(1, "Speed")
+createSlider(2, "Jump")
+createSlider(3, "Fly")
+
+-- ==========================================
+-- SETTINGS PAGE
+-- ==========================================
+
+GUI.SettingsPageTitle = createText(
+    "Settings",
+    X + 170,
+    Y + 78,
+    18,
+    TITLE_COLOR
+)
+
+GUI.SettingsPageTitle.Visible = false
+
+local SETTINGS_Y = Y + 130
+
+addGroup(
+    "KeybindHover",
+    roundedBox(
+        X + 166,
+        SETTINGS_Y - 4,
+        348,
+        50,
+        10,
+        HOVER
+    )
+)
+
+addGroup(
+    "KeybindButton",
+    roundedBox(
+        X + 170,
+        SETTINGS_Y,
+        340,
+        42,
+        8,
+        BUTTON
+    )
+)
+
+GUI.KeybindAccent = rect(
+    X + 170,
+    SETTINGS_Y + 7,
+    3,
+    28,
+    ACCENT
+)
+
+GUI.KeybindText = createText(
+    "Keybind: END",
+    X + 190,
+    SETTINGS_Y + 12,
+    14,
+    TEXT_COLOR
+)
+
+addGroup(
+    "CloseHover",
+    roundedBox(
+        X + 166,
+        SETTINGS_Y + 51,
+        348,
+        50,
+        10,
+        Color3.fromRGB(55, 25, 35)
+    )
+)
+
+addGroup(
+    "CloseScriptButton",
+    roundedBox(
+        X + 170,
+        SETTINGS_Y + 55,
+        340,
+        42,
+        8,
+        Color3.fromRGB(45, 22, 30)
+    )
+)
+
+GUI.CloseScriptAccent = rect(
+    X + 170,
+    SETTINGS_Y + 62,
+    3,
+    28,
+    DANGER
+)
+
+GUI.CloseScriptText = createText(
+    "Close Script",
+    X + 190,
+    SETTINGS_Y + 67,
+    14,
+    Color3.fromRGB(240, 180, 190)
+)
+
+setGroupVisible(GUI.KeybindHover, false)
+setGroupVisible(GUI.CloseHover, false)
+
+-- ==========================================
+-- PAGE FUNCTIONS
+-- ==========================================
+
+local function hideMainPage()
+    GUI.MainPageTitle.Visible = false
+
+    for i = 1, 3 do
+        setGroupVisible(
+            GUI["MainHover" .. i],
+            false
+        )
+
+        setGroupVisible(
+            GUI["MainActionButton" .. i],
+            false
+        )
+
+        GUI["MainActionAccent" .. i].Visible = false
+        GUI["MainActionText" .. i].Visible = false
+    end
+end
+
+local function showMainPage()
+    GUI.MainPageTitle.Visible = true
+
+    for i = 1, 3 do
+        setGroupVisible(
+            GUI["MainActionButton" .. i],
+            true
+        )
+
+        GUI["MainActionAccent" .. i].Visible = true
+        GUI["MainActionText" .. i].Visible = true
+    end
+end
+
+local function hideMiscPage()
+    GUI.MiscTitle.Visible = false
+
+    for i = 1, 3 do
+        setGroupVisible(
+            GUI["SliderHover" .. i],
+            false
+        )
+
+        setGroupVisible(
+            GUI["SliderBG" .. i],
+            false
+        )
+
+        GUI["SliderText" .. i].Visible = false
+        GUI["SliderValue" .. i].Visible = false
+        GUI["SliderTrack" .. i].Visible = false
+        GUI["SliderFill" .. i].Visible = false
+        GUI["SliderKnob" .. i].Visible = false
+    end
+end
+
+local function showMiscPage()
+    GUI.MiscTitle.Visible = true
+
+    for i = 1, 3 do
+        setGroupVisible(
+            GUI["SliderBG" .. i],
+            true
+        )
+
+        GUI["SliderText" .. i].Visible = true
+        GUI["SliderValue" .. i].Visible = true
+        GUI["SliderTrack" .. i].Visible = true
+        GUI["SliderFill" .. i].Visible = true
+        GUI["SliderKnob" .. i].Visible = true
+    end
+end
+
+local function hideSettingsPage()
+    GUI.SettingsPageTitle.Visible = false
+
+    setGroupVisible(
+        GUI.KeybindHover,
+        false
+    )
+
+    setGroupVisible(
+        GUI.KeybindButton,
+        false
+    )
+
+    setGroupVisible(
+        GUI.CloseHover,
+        false
+    )
+
+    setGroupVisible(
+        GUI.CloseScriptButton,
+        false
+    )
+
+    GUI.KeybindAccent.Visible = false
+    GUI.KeybindText.Visible = false
+
+    GUI.CloseScriptAccent.Visible = false
+    GUI.CloseScriptText.Visible = false
+end
+
+local function showSettingsPage()
+    GUI.SettingsPageTitle.Visible = true
+
+    setGroupVisible(
+        GUI.KeybindButton,
+        true
+    )
+
+    setGroupVisible(
+        GUI.CloseScriptButton,
+        true
+    )
+
+    GUI.KeybindAccent.Visible = true
+    GUI.KeybindText.Visible = true
+
+    GUI.CloseScriptAccent.Visible = true
+    GUI.CloseScriptText.Visible = true
+end
+
+local function setMainPage()
+    CURRENT_PAGE = "Main"
+
+    showMainPage()
+    hideMiscPage()
+    hideSettingsPage()
+end
+
+local function setMiscPage()
+    CURRENT_PAGE = "Misc"
+
+    hideMainPage()
+    showMiscPage()
+    hideSettingsPage()
+end
+
+local function setSettingsPage()
+    CURRENT_PAGE = "Settings"
+
+    hideMainPage()
+    hideMiscPage()
+    showSettingsPage()
+end
+
+setMainPage()
+
+-- ==========================================
+-- COMPACT GUI
+-- ==========================================
+
+addGroup(
+    "CompactShadow",
+    roundedBox(
+        X + 4,
+        Y + 5,
+        COMPACT_W,
+        COMPACT_H,
+        R,
+        SHADOW
+    )
+)
+
+addGroup(
+    "CompactBackground",
+    roundedBox(
+        X,
+        Y,
+        COMPACT_W,
+        COMPACT_H,
+        R,
+        PANEL
+    )
+)
+
+GUI.CompactAccent = rect(
+    X,
+    Y + 7,
+    3,
+    COMPACT_H - 14,
+    ACCENT
+)
+
+GUI.CompactTitle = createText(
+    "Dodo",
+    X + 18,
+    Y + 13,
+    18,
+    TITLE_COLOR
+)
+
+GUI.CompactStatus = circle(
+    X + COMPACT_W - 22,
+    Y + 24,
+    5,
+    ACCENT
+)
+
+setGroupVisible(
+    GUI.CompactShadow,
+    false
+)
+
+setGroupVisible(
+    GUI.CompactBackground,
+    false
+)
+
+GUI.CompactAccent.Visible = false
+GUI.CompactTitle.Visible = false
+GUI.CompactStatus.Visible = false
+
+-- ==========================================
+-- MOUSE
+-- ==========================================
+
+local Players = game:GetService("Players")
+local Mouse = Players.LocalPlayer:GetMouse()
+
+local activeSlider = nil
+
+local function clamp(value, minimum, maximum)
+    return math.max(
+        minimum,
+        math.min(maximum, value)
+    )
+end
+
+local function updateSlider(index, mouseX)
+    local trackX = SLIDER_X + 18
+    local trackW = SLIDER_W - 36
+
+    local percent = clamp(
+        (mouseX - trackX) / trackW,
+        0,
+        1
+    )
+
+    local value =
+        math.floor(percent * 100 + 0.5)
+
+    sliderValues[index] = value
+
+    local fillWidth =
+        trackW * percent
+
+    GUI["SliderFill" .. index].Size =
+        Vector2.new(
+            math.max(1, fillWidth),
+            3
+        )
+
+    GUI["SliderKnob" .. index].Position =
+        Vector2.new(
+            trackX + fillWidth,
+            SLIDER_START_Y +
+            ((index - 1) * SLIDER_GAP) +
+            30.5
+        )
+
+    GUI["SliderValue" .. index].Text =
+        tostring(value)
+end
+
+-- ==========================================
+-- HOVER
+-- ==========================================
+
+task.spawn(function()
+    while RUNNING do
+
+        if OPEN and not ANIMATING then
+
+            local mouseX = Mouse.X
+            local mouseY = Mouse.Y
+
+            -- Sidebar
+            setGroupVisible(
+                GUI.MainSideHover,
+                inside(
+                    mouseX,
+                    mouseY,
+                    X + 12,
+                    Y + 75,
+                    121,
+                    40
+                )
+            )
+
+            setGroupVisible(
+                GUI.MiscSideHover,
+                inside(
+                    mouseX,
+                    mouseY,
+                    X + 12,
+                    Y + 125,
+                    121,
+                    40
+                )
+            )
+
+            setGroupVisible(
+                GUI.SettingsSideHover,
+                inside(
+                    mouseX,
+                    mouseY,
+                    X + 12,
+                    Y + 175,
+                    121,
+                    40
+                )
+            )
+
+            -- Main
+            for i = 1, 3 do
+
+                local buttonY =
+                    Y + 130 +
+                    ((i - 1) * 50)
+
+                setGroupVisible(
+                    GUI["MainHover" .. i],
+                    CURRENT_PAGE == "Main"
+                    and inside(
+                        mouseX,
+                        mouseY,
+                        X + 170,
+                        buttonY,
+                        340,
+                        38
+                    )
+                )
+            end
+
+            -- Misc sliders
+            for i = 1, 3 do
+
+                local sliderY =
+                    SLIDER_START_Y +
+                    ((i - 1) * SLIDER_GAP)
+
+                setGroupVisible(
+                    GUI["SliderHover" .. i],
+                    CURRENT_PAGE == "Misc"
+                    and inside(
+                        mouseX,
+                        mouseY,
+                        SLIDER_X,
+                        sliderY,
+                        SLIDER_W,
+                        SLIDER_H
+                    )
+                )
+            end
+
+            -- Settings
+            setGroupVisible(
+                GUI.KeybindHover,
+                CURRENT_PAGE == "Settings"
+                and inside(
+                    mouseX,
+                    mouseY,
+                    X + 170,
+                    SETTINGS_Y,
+                    340,
+                    42
+                )
+            )
+
+            setGroupVisible(
+                GUI.CloseHover,
+                CURRENT_PAGE == "Settings"
+                and inside(
+                    mouseX,
+                    mouseY,
+                    X + 170,
+                    SETTINGS_Y + 55,
+                    340,
+                    42
+                )
+            )
+
+        else
+
+            setGroupVisible(
+                GUI.MainSideHover,
+                false
+            )
+
+            setGroupVisible(
+                GUI.MiscSideHover,
+                false
+            )
+
+            setGroupVisible(
+                GUI.SettingsSideHover,
+                false
+            )
+
+            for i = 1, 3 do
+                setGroupVisible(
+                    GUI["MainHover" .. i],
+                    false
+                )
+
+                setGroupVisible(
+                    GUI["SliderHover" .. i],
+                    false
+                )
+            end
+
+            setGroupVisible(
+                GUI.KeybindHover,
+                false
+            )
+
+            setGroupVisible(
+                GUI.CloseHover,
+                false
+            )
+        end
+
+        task.wait(0.01)
+    end
+end)
+
+-- ==========================================
+-- MAIN BUTTON TEST
+-- ==========================================
+
+task.spawn(function()
+    while RUNNING do
+
+        if OPEN
+        and CURRENT_PAGE == "Main"
+        and not COMPACT
+        and not ANIMATING
+        and ismouse1pressed() then
+
+            local mouseX = Mouse.X
+            local mouseY = Mouse.Y
+
+            for i = 1, 3 do
+
+                local buttonY =
+                    Y + 130 +
+                    ((i - 1) * 50)
+
+                if inside(
+                    mouseX,
+                    mouseY,
+                    X + 170,
+                    buttonY,
+                    340,
+                    38
+                ) then
+
+                    if i == 1 then
+                        print("Rapid Fire clicked")
+                    elseif i == 2 then
+                        print("No Spread clicked")
+                    elseif i == 3 then
+                        print("No Recoil clicked")
+                    end
+
+                    repeat
+                        task.wait()
+                    until not ismouse1pressed()
+
+                    break
+                end
+            end
+        end
+
+        task.wait(0.01)
+    end
+end)
+
+-- ==========================================
+-- SLIDER INPUT
+-- ==========================================
+
+task.spawn(function()
+    while RUNNING do
+
+        if OPEN
+        and CURRENT_PAGE == "Misc"
+        and not COMPACT
+        and not ANIMATING then
+
+            local mouseX = Mouse.X
+            local mouseY = Mouse.Y
+
+            if ismouse1pressed() then
+
+                if activeSlider then
+
+                    updateSlider(
+                        activeSlider,
+                        mouseX
+                    )
+
+                else
+
+                    for i = 1, 3 do
+
+                        local sliderY =
+                            SLIDER_START_Y +
+                            ((i - 1) * SLIDER_GAP)
+
+                        if inside(
+                            mouseX,
+                            mouseY,
+                            SLIDER_X,
+                            sliderY,
+                            SLIDER_W,
+                            SLIDER_H
+                        ) then
+
+                            activeSlider = i
+
+                            updateSlider(
+                                i,
+                                mouseX
+                            )
+
+                            break
+                        end
+                    end
+                end
+
+            else
+
+                activeSlider = nil
+
+            end
+        end
+
+        task.wait(0.01)
+    end
+end)
+
+-- ==========================================
+-- SIDEBAR INPUT
+-- ==========================================
+
+task.spawn(function()
+    while RUNNING do
+
+        if OPEN
+        and not COMPACT
+        and not ANIMATING
+        and ismouse1pressed() then
+
+            local mouseX = Mouse.X
+            local mouseY = Mouse.Y
+
+            -- Main
+            if inside(
+                mouseX,
+                mouseY,
+                X + 12,
+                Y + 75,
+                121,
+                40
+            ) then
+
+                setMainPage()
+
+            -- Misc
+            elseif inside(
+                mouseX,
+                mouseY,
+                X + 12,
+                Y + 125,
+                121,
+                40
+            ) then
+
+                setMiscPage()
+
+            -- Settings
+            elseif inside(
+                mouseX,
+                mouseY,
+                X + 12,
+                Y + 175,
+                121,
+                40
+            ) then
+
+                setSettingsPage()
+
+            -- Close
+            elseif CURRENT_PAGE == "Settings"
+            and inside(
+                mouseX,
+                mouseY,
+                X + 170,
+                SETTINGS_Y + 55,
+                340,
+                42
+            ) then
+
+                RUNNING = false
+
+                for _, object in pairs(GUI) do
+
+                    if type(object) == "table" then
+
+                        for _, drawing in pairs(object) do
+                            pcall(function()
+                                drawing:Remove()
+                            end)
+                        end
+
+                    else
+
+                        pcall(function()
+                            object:Remove()
+                        end)
+
+                    end
+                end
+
+                break
+            end
+
+            repeat
+                task.wait()
+            until not ismouse1pressed()
+        end
+
+        task.wait(0.01)
+    end
+end)
+
+-- ==========================================
+-- DRAGGING
+-- Werkt groot én compact
+-- ==========================================
+
+local dragging = false
+local dragOffsetX = 0
+local dragOffsetY = 0
+
+local function moveGUI(newX, newY)
+
+    local dx = newX - X
+    local dy = newY - Y
+
+    X = newX
+    Y = newY
+
+    SLIDER_X = X + 170
+    SLIDER_START_Y = Y + 130
+    SETTINGS_Y = Y + 130
+
+    for _, object in pairs(GUI) do
+
+        if type(object) == "table" then
+            moveGroup(object, dx, dy)
+        else
+
+            local pos = object.Position
+
+            object.Position =
+                Vector2.new(
+                    pos.X + dx,
+                    pos.Y + dy
+                )
+        end
+    end
+end
+
+task.spawn(function()
+
+    while RUNNING do
+
+        if OPEN and not ANIMATING then
+
+            local mouseX = Mouse.X
+            local mouseY = Mouse.Y
+
+            local dragWidth =
+                COMPACT
+                and COMPACT_W
+                or W
+
+            local dragHeight =
+                COMPACT
+                and COMPACT_H
+                or 58
+
+            if not dragging
+            and ismouse1pressed()
+            and inside(
+                mouseX,
+                mouseY,
+                X,
+                Y,
+                dragWidth,
+                dragHeight
+            ) then
+
+                dragging = true
+
+                dragOffsetX =
+                    mouseX - X
+
+                dragOffsetY =
+                    mouseY - Y
+            end
+
+            if dragging then
+
+                if ismouse1pressed() then
+
+                    moveGUI(
+                        mouseX - dragOffsetX,
+                        mouseY - dragOffsetY
+                    )
+
+                else
+
+                    dragging = false
+
+                end
+            end
+        end
+
+        task.wait(0.01)
+    end
+end)
+
+-- ==========================================
+-- COMPACT GUI
+-- ==========================================
+
+addGroup(
+    "CompactShadow",
+    roundedBox(
+        X + 4,
+        Y + 5,
+        COMPACT_W,
+        COMPACT_H,
+        R,
+        SHADOW
+    )
+)
+
+addGroup(
+    "CompactBackground",
+    roundedBox(
+        X,
+        Y,
+        COMPACT_W,
+        COMPACT_H,
+        R,
+        PANEL
+    )
+)
+
+GUI.CompactAccent = rect(
+    X,
+    Y + 7,
+    3,
+    COMPACT_H - 14,
+    ACCENT
+)
+
+GUI.CompactTitle = createText(
+    "Dodo",
+    X + 18,
+    Y + 13,
+    18,
+    TITLE_COLOR
+)
+
+GUI.CompactStatus = circle(
+    X + COMPACT_W - 22,
+    Y + 24,
+    5,
+    ACCENT
+)
+
+setGroupVisible(
+    GUI.CompactShadow,
+    false
+)
+
+setGroupVisible(
+    GUI.CompactBackground,
+    false
+)
+
+GUI.CompactAccent.Visible = false
+GUI.CompactTitle.Visible = false
+GUI.CompactStatus.Visible = false
+
+-- ==========================================
+-- NORMAL / COMPACT
+-- ==========================================
+
+local function setNormalVisible(state)
+
+    for name, object in pairs(GUI) do
+
+        if name ~= "CompactShadow"
+        and name ~= "CompactBackground"
+        and name ~= "CompactAccent"
+        and name ~= "CompactTitle"
+        and name ~= "CompactStatus" then
+
+            if type(object) == "table" then
+                setGroupVisible(object, state)
+            else
+                object.Visible = state
+            end
+        end
+    end
+
+    if state then
+
+        if CURRENT_PAGE == "Misc" then
+            setMiscPage()
+
+        elseif CURRENT_PAGE == "Settings" then
+            setSettingsPage()
+
+        else
+            setMainPage()
+        end
+    end
+end
+
+local function setCompactVisible(state)
+
+    setGroupVisible(
+        GUI.CompactShadow,
+        state
+    )
+
+    setGroupVisible(
+        GUI.CompactBackground,
+        state
+    )
+
+    GUI.CompactAccent.Visible = state
+    GUI.CompactTitle.Visible = state
+    GUI.CompactStatus.Visible = state
+end
+
+local function easeOutCubic(t)
+    return 1 - ((1 - t) ^ 3)
+end
+
+-- ==========================================
+-- COMPACT
+-- ==========================================
+
+local function animateToCompact()
+
+    if ANIMATING or COMPACT then
+        return
+    end
+
+    ANIMATING = true
+
+    setNormalVisible(false)
+    setCompactVisible(true)
+
+    local duration = 0.30
+    local startTime = os.clock()
+
+    while true do
+
+        local elapsed =
+            os.clock() - startTime
+
+        local t =
+            math.clamp(
+                elapsed / duration,
+                0,
+                1
+            )
+
+        t = easeOutCubic(t)
+
+        local currentW =
+            W + (COMPACT_W - W) * t
+
+        local currentH =
+            H + (COMPACT_H - H) * t
+
+        local bg =
+            GUI.CompactBackground
+
+        bg[1].Position =
+            Vector2.new(
+                X + R,
+                Y
+            )
+
+        bg[1].Size =
+            Vector2.new(
+                math.max(
+                    1,
+                    currentW - R * 2
+                ),
+                currentH
+            )
+
+        bg[2].Position =
+            Vector2.new(
+                X,
+                Y + R
+            )
+
+        bg[2].Size =
+            Vector2.new(
+                currentW,
+                math.max(
+                    1,
+                    currentH - R * 2
+                )
+            )
+
+        bg[3].Position =
+            Vector2.new(
+                X + R,
+                Y + R
+            )
+
+        bg[4].Position =
+            Vector2.new(
+                X + currentW - R,
+                Y + R
+            )
+
+        bg[5].Position =
+            Vector2.new(
+                X + R,
+                Y + currentH - R
+            )
+
+        bg[6].Position =
+            Vector2.new(
+                X + currentW - R,
+                Y + currentH - R
+            )
+
+        GUI.CompactTitle.Position =
+            Vector2.new(
+                X + 18,
+                Y + math.floor(
+                    currentH / 2 - 10
+                )
+            )
+
+        GUI.CompactStatus.Position =
+            Vector2.new(
+                X + currentW - 22,
+                Y + currentH / 2
+            )
+
+        if t >= 1 then
+            break
+        end
+
+        task.wait()
+    end
+
+    COMPACT = true
+    ANIMATING = false
+end
+
+-- ==========================================
+-- EXPAND
+-- ==========================================
+
+local function animateToFull()
+
+    if ANIMATING or not COMPACT then
+        return
+    end
+
+    ANIMATING = true
+
+    local duration = 0.30
+    local startTime = os.clock()
+
+    local startDodoX =
+        X + 18
+
+    local startDodoY =
+        Y + math.floor(
+            COMPACT_H / 2 - 10
+        )
+
+    local targetDodoX =
+        X + 22
+
+    local targetDodoY =
+        Y + 17
+
+    while true do
+
+        local elapsed =
+            os.clock() - startTime
+
+        local t =
+            math.clamp(
+                elapsed / duration,
+                0,
+                1
+            )
+
+        t = easeOutCubic(t)
+
+        local currentW =
+            COMPACT_W +
+            (W - COMPACT_W) * t
+
+        local currentH =
+            COMPACT_H +
+            (H - COMPACT_H) * t
+
+        local bg =
+            GUI.CompactBackground
+
+        bg[1].Position =
+            Vector2.new(
+                X + R,
+                Y
+            )
+
+        bg[1].Size =
+            Vector2.new(
+                math.max(
+                    1,
+                    currentW - R * 2
+                ),
+                currentH
+            )
+
+        bg[2].Position =
+            Vector2.new(
+                X,
+                Y + R
+            )
+
+        bg[2].Size =
+            Vector2.new(
+                currentW,
+                math.max(
+                    1,
+                    currentH - R * 2
+                )
+            )
+
+        bg[3].Position =
+            Vector2.new(
+                X + R,
+                Y + R
+            )
+
+        bg[4].Position =
+            Vector2.new(
+                X + currentW - R,
+                Y + R
+            )
+
+        bg[5].Position =
+            Vector2.new(
+                X + R,
+                Y + currentH - R
+            )
+
+        bg[6].Position =
+            Vector2.new(
+                X + currentW - R,
+                Y + currentH - R
+            )
+
+        GUI.CompactTitle.Position =
+            Vector2.new(
+                startDodoX +
+                (targetDodoX - startDodoX) * t,
+
+                startDodoY +
+                (targetDodoY - startDodoY) * t
+            )
+
+        GUI.CompactStatus.Position =
+            Vector2.new(
+                X + currentW - 22,
+                Y + currentH / 2
+            )
+
+        if t >= 1 then
+            break
+        end
+
+        task.wait()
+    end
+
+    setCompactVisible(false)
+    setNormalVisible(true)
+
+    GUI.Title.Position =
+        Vector2.new(
+            X + 22,
+            Y + 17
+        )
+
+    COMPACT = false
+    ANIMATING = false
+end
+
+-- ==========================================
+-- END KEY
+-- ==========================================
+
+local END_KEY = 0x23
+local wasPressed = false
+
+task.spawn(function()
+
+    while RUNNING do
+
+        local pressed =
+            iskeypressed(END_KEY)
+
+        if pressed
+        and not wasPressed
+        and not ANIMATING then
+
+            if COMPACT then
+                animateToFull()
+            else
+                animateToCompact()
+            end
+        end
+
+        wasPressed = pressed
+
+        task.wait(0.01)
+    end
+end)
