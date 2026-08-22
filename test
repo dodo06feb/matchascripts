@@ -1,7 +1,7 @@
 -- ==========================================
 -- DODO GUI
--- Main / Misc / Settings
--- Hover / Sliders / Smooth Compact / Drag
+-- Main / Settings
+-- Hover / Smooth Compact / Drag
 -- ==========================================
 
 local GUI = {}
@@ -34,6 +34,7 @@ local DANGER      = Color3.fromRGB(220, 70, 90)
 
 local X = 180
 local Y = 140
+
 local W = 540
 local H = 360
 
@@ -48,23 +49,27 @@ local R = 10
 
 local function rect(x, y, w, h, color)
     local obj = Drawing.new("Square")
+
     obj.Position = Vector2.new(x, y)
     obj.Size = Vector2.new(w, h)
     obj.Color = color
     obj.Filled = true
     obj.Transparency = 1
     obj.Visible = true
+
     return obj
 end
 
 local function circle(x, y, radius, color)
     local obj = Drawing.new("Circle")
+
     obj.Position = Vector2.new(x, y)
     obj.Radius = radius
     obj.Color = color
     obj.Filled = true
     obj.Transparency = 1
     obj.Visible = true
+
     return obj
 end
 
@@ -153,6 +158,10 @@ local function inside(x, y, px, py, pw, ph)
 end
 
 local function moveGroup(group, dx, dy)
+    if not group then
+        return
+    end
+
     for _, object in pairs(group) do
         local pos = object.Position
 
@@ -164,7 +173,7 @@ local function moveGroup(group, dx, dy)
 end
 
 -- ==========================================
--- WINDOW
+-- MAIN WINDOW
 -- ==========================================
 
 addGroup(
@@ -242,7 +251,7 @@ addGroup(
     )
 )
 
--- Sidebar hover
+-- Main hover
 addGroup(
     "MainSideHover",
     roundedBox(
@@ -255,8 +264,9 @@ addGroup(
     )
 )
 
+-- Settings hover
 addGroup(
-    "MiscSideHover",
+    "SettingsSideHover",
     roundedBox(
         X + 8,
         Y + 121,
@@ -267,23 +277,13 @@ addGroup(
     )
 )
 
-addGroup(
-    "SettingsSideHover",
-    roundedBox(
-        X + 8,
-        Y + 171,
-        129,
-        48,
-        10,
-        HOVER
-    )
-)
-
 setGroupVisible(GUI.MainSideHover, false)
-setGroupVisible(GUI.MiscSideHover, false)
 setGroupVisible(GUI.SettingsSideHover, false)
 
--- Main
+-- ==========================================
+-- MAIN SIDEBAR BUTTON
+-- ==========================================
+
 addGroup(
     "MainButton",
     roundedBox(
@@ -312,9 +312,12 @@ GUI.MainText = createText(
     TEXT_COLOR
 )
 
--- Misc
+-- ==========================================
+-- SETTINGS SIDEBAR BUTTON
+-- ==========================================
+
 addGroup(
-    "MiscButton",
+    "SettingsButton",
     roundedBox(
         X + 12,
         Y + 125,
@@ -325,38 +328,9 @@ addGroup(
     )
 )
 
-GUI.MiscAccent = rect(
-    X + 12,
-    Y + 132,
-    3,
-    26,
-    ACCENT
-)
-
-GUI.MiscText = createText(
-    "Misc",
-    X + 25,
-    Y + 137,
-    14,
-    TEXT_COLOR
-)
-
--- Settings
-addGroup(
-    "SettingsButton",
-    roundedBox(
-        X + 12,
-        Y + 175,
-        121,
-        40,
-        8,
-        BUTTON
-    )
-)
-
 GUI.SettingsAccent = rect(
     X + 12,
-    Y + 182,
+    Y + 132,
     3,
     26,
     ACCENT
@@ -365,7 +339,7 @@ GUI.SettingsAccent = rect(
 GUI.SettingsText = createText(
     "Settings",
     X + 25,
-    Y + 187,
+    Y + 137,
     14,
     TEXT_COLOR
 )
@@ -440,115 +414,6 @@ for i = 1, 3 do
 end
 
 -- ==========================================
--- MISC PAGE
--- Alleen Speed / Jump / Fly
--- ==========================================
-
-GUI.MiscTitle = createText(
-    "Misc",
-    X + 170,
-    Y + 78,
-    18,
-    TITLE_COLOR
-)
-
-GUI.MiscTitle.Visible = false
-
-local sliderValues = {
-    50, -- Speed
-    50, -- Jump
-    50  -- Fly
-}
-
-local SLIDER_X = X + 170
-local SLIDER_W = 340
-local SLIDER_H = 38
-local SLIDER_START_Y = Y + 130
-local SLIDER_GAP = 50
-
-local function createSlider(index, title)
-    local sliderY =
-        SLIDER_START_Y +
-        ((index - 1) * SLIDER_GAP)
-
-    addGroup(
-        "SliderHover" .. index,
-        roundedBox(
-            SLIDER_X - 4,
-            sliderY - 4,
-            SLIDER_W + 8,
-            SLIDER_H + 8,
-            10,
-            HOVER
-        )
-    )
-
-    addGroup(
-        "SliderBG" .. index,
-        roundedBox(
-            SLIDER_X,
-            sliderY,
-            SLIDER_W,
-            SLIDER_H,
-            8,
-            BUTTON
-        )
-    )
-
-    GUI["SliderText" .. index] = createText(
-        title,
-        SLIDER_X + 18,
-        sliderY + 9,
-        14,
-        TEXT_COLOR
-    )
-
-    GUI["SliderValue" .. index] = createText(
-        tostring(sliderValues[index]),
-        SLIDER_X + SLIDER_W - 38,
-        sliderY + 9,
-        13,
-        ACCENT
-    )
-
-    GUI["SliderTrack" .. index] = rect(
-        SLIDER_X + 18,
-        sliderY + 29,
-        SLIDER_W - 36,
-        3,
-        Color3.fromRGB(48, 40, 51)
-    )
-
-    local fillWidth =
-        (SLIDER_W - 36) *
-        (sliderValues[index] / 100)
-
-    GUI["SliderFill" .. index] = rect(
-        SLIDER_X + 18,
-        sliderY + 29,
-        fillWidth,
-        3,
-        ACCENT
-    )
-
-    GUI["SliderKnob" .. index] = circle(
-        SLIDER_X + 18 + fillWidth,
-        sliderY + 30.5,
-        5,
-        ACCENT
-    )
-
-    setGroupVisible(
-        GUI["SliderHover" .. index],
-        false
-    )
-end
-
-createSlider(1, "Speed")
-createSlider(2, "Jump")
-createSlider(3, "Fly")
-
--- ==========================================
 -- SETTINGS PAGE
 -- ==========================================
 
@@ -564,6 +429,7 @@ GUI.SettingsPageTitle.Visible = false
 
 local SETTINGS_Y = Y + 130
 
+-- Keybind
 addGroup(
     "KeybindHover",
     roundedBox(
@@ -604,11 +470,53 @@ GUI.KeybindText = createText(
     TEXT_COLOR
 )
 
+-- Reset Gun Mods
+addGroup(
+    "ResetHover",
+    roundedBox(
+        X + 166,
+        SETTINGS_Y + 51,
+        348,
+        50,
+        10,
+        HOVER
+    )
+)
+
+addGroup(
+    "ResetButton",
+    roundedBox(
+        X + 170,
+        SETTINGS_Y + 55,
+        340,
+        42,
+        8,
+        BUTTON
+    )
+)
+
+GUI.ResetAccent = rect(
+    X + 170,
+    SETTINGS_Y + 62,
+    3,
+    28,
+    ACCENT
+)
+
+GUI.ResetText = createText(
+    "Reset Gun Mods (keyb = B)",
+    X + 190,
+    SETTINGS_Y + 67,
+    14,
+    TEXT_COLOR
+)
+
+-- Close Script
 addGroup(
     "CloseHover",
     roundedBox(
         X + 166,
-        SETTINGS_Y + 51,
+        SETTINGS_Y + 106,
         348,
         50,
         10,
@@ -620,7 +528,7 @@ addGroup(
     "CloseScriptButton",
     roundedBox(
         X + 170,
-        SETTINGS_Y + 55,
+        SETTINGS_Y + 110,
         340,
         42,
         8,
@@ -630,7 +538,7 @@ addGroup(
 
 GUI.CloseScriptAccent = rect(
     X + 170,
-    SETTINGS_Y + 62,
+    SETTINGS_Y + 117,
     3,
     28,
     DANGER
@@ -639,13 +547,29 @@ GUI.CloseScriptAccent = rect(
 GUI.CloseScriptText = createText(
     "Close Script",
     X + 190,
-    SETTINGS_Y + 67,
+    SETTINGS_Y + 122,
     14,
     Color3.fromRGB(240, 180, 190)
 )
 
+-- Hide settings initially
 setGroupVisible(GUI.KeybindHover, false)
+setGroupVisible(GUI.KeybindButton, false)
+
+setGroupVisible(GUI.ResetHover, false)
+setGroupVisible(GUI.ResetButton, false)
+
 setGroupVisible(GUI.CloseHover, false)
+setGroupVisible(GUI.CloseScriptButton, false)
+
+GUI.KeybindAccent.Visible = false
+GUI.KeybindText.Visible = false
+
+GUI.ResetAccent.Visible = false
+GUI.ResetText.Visible = false
+
+GUI.CloseScriptAccent.Visible = false
+GUI.CloseScriptText.Visible = false
 
 -- ==========================================
 -- PAGE FUNCTIONS
@@ -684,45 +608,6 @@ local function showMainPage()
     end
 end
 
-local function hideMiscPage()
-    GUI.MiscTitle.Visible = false
-
-    for i = 1, 3 do
-        setGroupVisible(
-            GUI["SliderHover" .. i],
-            false
-        )
-
-        setGroupVisible(
-            GUI["SliderBG" .. i],
-            false
-        )
-
-        GUI["SliderText" .. i].Visible = false
-        GUI["SliderValue" .. i].Visible = false
-        GUI["SliderTrack" .. i].Visible = false
-        GUI["SliderFill" .. i].Visible = false
-        GUI["SliderKnob" .. i].Visible = false
-    end
-end
-
-local function showMiscPage()
-    GUI.MiscTitle.Visible = true
-
-    for i = 1, 3 do
-        setGroupVisible(
-            GUI["SliderBG" .. i],
-            true
-        )
-
-        GUI["SliderText" .. i].Visible = true
-        GUI["SliderValue" .. i].Visible = true
-        GUI["SliderTrack" .. i].Visible = true
-        GUI["SliderFill" .. i].Visible = true
-        GUI["SliderKnob" .. i].Visible = true
-    end
-end
-
 local function hideSettingsPage()
     GUI.SettingsPageTitle.Visible = false
 
@@ -733,6 +618,16 @@ local function hideSettingsPage()
 
     setGroupVisible(
         GUI.KeybindButton,
+        false
+    )
+
+    setGroupVisible(
+        GUI.ResetHover,
+        false
+    )
+
+    setGroupVisible(
+        GUI.ResetButton,
         false
     )
 
@@ -749,6 +644,9 @@ local function hideSettingsPage()
     GUI.KeybindAccent.Visible = false
     GUI.KeybindText.Visible = false
 
+    GUI.ResetAccent.Visible = false
+    GUI.ResetText.Visible = false
+
     GUI.CloseScriptAccent.Visible = false
     GUI.CloseScriptText.Visible = false
 end
@@ -762,12 +660,20 @@ local function showSettingsPage()
     )
 
     setGroupVisible(
+        GUI.ResetButton,
+        true
+    )
+
+    setGroupVisible(
         GUI.CloseScriptButton,
         true
     )
 
     GUI.KeybindAccent.Visible = true
     GUI.KeybindText.Visible = true
+
+    GUI.ResetAccent.Visible = true
+    GUI.ResetText.Visible = true
 
     GUI.CloseScriptAccent.Visible = true
     GUI.CloseScriptText.Visible = true
@@ -777,15 +683,6 @@ local function setMainPage()
     CURRENT_PAGE = "Main"
 
     showMainPage()
-    hideMiscPage()
-    hideSettingsPage()
-end
-
-local function setMiscPage()
-    CURRENT_PAGE = "Misc"
-
-    hideMainPage()
-    showMiscPage()
     hideSettingsPage()
 end
 
@@ -793,76 +690,10 @@ local function setSettingsPage()
     CURRENT_PAGE = "Settings"
 
     hideMainPage()
-    hideMiscPage()
     showSettingsPage()
 end
 
 setMainPage()
-
--- ==========================================
--- COMPACT GUI
--- ==========================================
-
-addGroup(
-    "CompactShadow",
-    roundedBox(
-        X + 4,
-        Y + 5,
-        COMPACT_W,
-        COMPACT_H,
-        R,
-        SHADOW
-    )
-)
-
-addGroup(
-    "CompactBackground",
-    roundedBox(
-        X,
-        Y,
-        COMPACT_W,
-        COMPACT_H,
-        R,
-        PANEL
-    )
-)
-
-GUI.CompactAccent = rect(
-    X,
-    Y + 7,
-    3,
-    COMPACT_H - 14,
-    ACCENT
-)
-
-GUI.CompactTitle = createText(
-    "Dodo",
-    X + 18,
-    Y + 13,
-    18,
-    TITLE_COLOR
-)
-
-GUI.CompactStatus = circle(
-    X + COMPACT_W - 22,
-    Y + 24,
-    5,
-    ACCENT
-)
-
-setGroupVisible(
-    GUI.CompactShadow,
-    false
-)
-
-setGroupVisible(
-    GUI.CompactBackground,
-    false
-)
-
-GUI.CompactAccent.Visible = false
-GUI.CompactTitle.Visible = false
-GUI.CompactStatus.Visible = false
 
 -- ==========================================
 -- MOUSE
@@ -870,51 +701,6 @@ GUI.CompactStatus.Visible = false
 
 local Players = game:GetService("Players")
 local Mouse = Players.LocalPlayer:GetMouse()
-
-local activeSlider = nil
-
-local function clamp(value, minimum, maximum)
-    return math.max(
-        minimum,
-        math.min(maximum, value)
-    )
-end
-
-local function updateSlider(index, mouseX)
-    local trackX = SLIDER_X + 18
-    local trackW = SLIDER_W - 36
-
-    local percent = clamp(
-        (mouseX - trackX) / trackW,
-        0,
-        1
-    )
-
-    local value =
-        math.floor(percent * 100 + 0.5)
-
-    sliderValues[index] = value
-
-    local fillWidth =
-        trackW * percent
-
-    GUI["SliderFill" .. index].Size =
-        Vector2.new(
-            math.max(1, fillWidth),
-            3
-        )
-
-    GUI["SliderKnob" .. index].Position =
-        Vector2.new(
-            trackX + fillWidth,
-            SLIDER_START_Y +
-            ((index - 1) * SLIDER_GAP) +
-            30.5
-        )
-
-    GUI["SliderValue" .. index].Text =
-        tostring(value)
-end
 
 -- ==========================================
 -- HOVER
@@ -928,7 +714,7 @@ task.spawn(function()
             local mouseX = Mouse.X
             local mouseY = Mouse.Y
 
-            -- Sidebar
+            -- Main sidebar
             setGroupVisible(
                 GUI.MainSideHover,
                 inside(
@@ -941,8 +727,9 @@ task.spawn(function()
                 )
             )
 
+            -- Settings sidebar
             setGroupVisible(
-                GUI.MiscSideHover,
+                GUI.SettingsSideHover,
                 inside(
                     mouseX,
                     mouseY,
@@ -953,19 +740,7 @@ task.spawn(function()
                 )
             )
 
-            setGroupVisible(
-                GUI.SettingsSideHover,
-                inside(
-                    mouseX,
-                    mouseY,
-                    X + 12,
-                    Y + 175,
-                    121,
-                    40
-                )
-            )
-
-            -- Main
+            -- Main buttons
             for i = 1, 3 do
 
                 local buttonY =
@@ -986,28 +761,7 @@ task.spawn(function()
                 )
             end
 
-            -- Misc sliders
-            for i = 1, 3 do
-
-                local sliderY =
-                    SLIDER_START_Y +
-                    ((i - 1) * SLIDER_GAP)
-
-                setGroupVisible(
-                    GUI["SliderHover" .. i],
-                    CURRENT_PAGE == "Misc"
-                    and inside(
-                        mouseX,
-                        mouseY,
-                        SLIDER_X,
-                        sliderY,
-                        SLIDER_W,
-                        SLIDER_H
-                    )
-                )
-            end
-
-            -- Settings
+            -- Settings keybind
             setGroupVisible(
                 GUI.KeybindHover,
                 CURRENT_PAGE == "Settings"
@@ -1021,6 +775,21 @@ task.spawn(function()
                 )
             )
 
+            -- Settings reset
+            setGroupVisible(
+                GUI.ResetHover,
+                CURRENT_PAGE == "Settings"
+                and inside(
+                    mouseX,
+                    mouseY,
+                    X + 170,
+                    SETTINGS_Y + 55,
+                    340,
+                    42
+                )
+            )
+
+            -- Settings close
             setGroupVisible(
                 GUI.CloseHover,
                 CURRENT_PAGE == "Settings"
@@ -1028,7 +797,7 @@ task.spawn(function()
                     mouseX,
                     mouseY,
                     X + 170,
-                    SETTINGS_Y + 55,
+                    SETTINGS_Y + 110,
                     340,
                     42
                 )
@@ -1042,29 +811,25 @@ task.spawn(function()
             )
 
             setGroupVisible(
-                GUI.MiscSideHover,
-                false
-            )
-
-            setGroupVisible(
                 GUI.SettingsSideHover,
                 false
             )
 
             for i = 1, 3 do
-                setGroupVisible(
-                    GUI["MainHover" .. i],
-                    false
-                )
 
                 setGroupVisible(
-                    GUI["SliderHover" .. i],
+                    GUI["MainHover" .. i],
                     false
                 )
             end
 
             setGroupVisible(
                 GUI.KeybindHover,
+                false
+            )
+
+            setGroupVisible(
+                GUI.ResetHover,
                 false
             )
 
@@ -1079,7 +844,7 @@ task.spawn(function()
 end)
 
 -- ==========================================
--- MAIN BUTTON TEST
+-- MAIN BUTTON INPUT
 -- ==========================================
 
 task.spawn(function()
@@ -1110,11 +875,13 @@ task.spawn(function()
                 ) then
 
                     if i == 1 then
-                        print("Rapid Fire clicked")
+                        setgc("ShootCooldown", 0)
+
                     elseif i == 2 then
-                        print("No Spread clicked")
+                        setgc("ShootSpread", 0)
+
                     elseif i == 3 then
-                        print("No Recoil clicked")
+                        setgc("ShootRecoil", 0)
                     end
 
                     repeat
@@ -1131,71 +898,35 @@ task.spawn(function()
 end)
 
 -- ==========================================
--- SLIDER INPUT
+-- RESET GUN MODS KEYBIND
+-- B = Reset Gun Mods
 -- ==========================================
+
+local RESET_KEY = 0x42
+local resetWasPressed = false
 
 task.spawn(function()
     while RUNNING do
 
-        if OPEN
-        and CURRENT_PAGE == "Misc"
-        and not COMPACT
-        and not ANIMATING then
+        local pressed =
+            iskeypressed(RESET_KEY)
 
-            local mouseX = Mouse.X
-            local mouseY = Mouse.Y
+        if pressed
+        and not resetWasPressed then
 
-            if ismouse1pressed() then
-
-                if activeSlider then
-
-                    updateSlider(
-                        activeSlider,
-                        mouseX
-                    )
-
-                else
-
-                    for i = 1, 3 do
-
-                        local sliderY =
-                            SLIDER_START_Y +
-                            ((i - 1) * SLIDER_GAP)
-
-                        if inside(
-                            mouseX,
-                            mouseY,
-                            SLIDER_X,
-                            sliderY,
-                            SLIDER_W,
-                            SLIDER_H
-                        ) then
-
-                            activeSlider = i
-
-                            updateSlider(
-                                i,
-                                mouseX
-                            )
-
-                            break
-                        end
-                    end
-                end
-
-            else
-
-                activeSlider = nil
-
-            end
+            setgc("ShootCooldown", 0.1)
+            setgc("ShootSpread", 0.1)
+            setgc("ShootRecoil", 0.1)
         end
+
+        resetWasPressed = pressed
 
         task.wait(0.01)
     end
 end)
 
 -- ==========================================
--- SIDEBAR INPUT
+-- SIDEBAR / SETTINGS INPUT
 -- ==========================================
 
 task.spawn(function()
@@ -1221,7 +952,7 @@ task.spawn(function()
 
                 setMainPage()
 
-            -- Misc
+            -- Settings
             elseif inside(
                 mouseX,
                 mouseY,
@@ -1231,27 +962,30 @@ task.spawn(function()
                 40
             ) then
 
-                setMiscPage()
-
-            -- Settings
-            elseif inside(
-                mouseX,
-                mouseY,
-                X + 12,
-                Y + 175,
-                121,
-                40
-            ) then
-
                 setSettingsPage()
 
-            -- Close
+            -- Reset Gun Mods
             elseif CURRENT_PAGE == "Settings"
             and inside(
                 mouseX,
                 mouseY,
                 X + 170,
                 SETTINGS_Y + 55,
+                340,
+                42
+            ) then
+
+                setgc("ShootCooldown", 0.1)
+                setgc("ShootSpread", 0.1)
+                setgc("ShootRecoil", 0.1)
+
+            -- Close Script
+            elseif CURRENT_PAGE == "Settings"
+            and inside(
+                mouseX,
+                mouseY,
+                X + 170,
+                SETTINGS_Y + 110,
                 340,
                 42
             ) then
@@ -1273,7 +1007,6 @@ task.spawn(function()
                         pcall(function()
                             object:Remove()
                         end)
-
                     end
                 end
 
@@ -1291,7 +1024,7 @@ end)
 
 -- ==========================================
 -- DRAGGING
--- Werkt groot én compact
+-- Works normal + compact
 -- ==========================================
 
 local dragging = false
@@ -1306,17 +1039,22 @@ local function moveGUI(newX, newY)
     X = newX
     Y = newY
 
-    SLIDER_X = X + 170
-    SLIDER_START_Y = Y + 130
     SETTINGS_Y = Y + 130
 
     for _, object in pairs(GUI) do
 
         if type(object) == "table" then
-            moveGroup(object, dx, dy)
+
+            moveGroup(
+                object,
+                dx,
+                dy
+            )
+
         else
 
-            local pos = object.Position
+            local pos =
+                object.Position
 
             object.Position =
                 Vector2.new(
@@ -1378,7 +1116,6 @@ task.spawn(function()
                 else
 
                     dragging = false
-
                 end
             end
         end
@@ -1467,8 +1204,14 @@ local function setNormalVisible(state)
         and name ~= "CompactStatus" then
 
             if type(object) == "table" then
-                setGroupVisible(object, state)
+
+                setGroupVisible(
+                    object,
+                    state
+                )
+
             else
+
                 object.Visible = state
             end
         end
@@ -1476,12 +1219,8 @@ local function setNormalVisible(state)
 
     if state then
 
-        if CURRENT_PAGE == "Misc" then
-            setMiscPage()
-
-        elseif CURRENT_PAGE == "Settings" then
+        if CURRENT_PAGE == "Settings" then
             setSettingsPage()
-
         else
             setMainPage()
         end
